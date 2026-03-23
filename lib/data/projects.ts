@@ -45,7 +45,8 @@ export const projects: Project[] = [
     category: "REACT NATIVE",
     badge: "Live on Play Store",
     tech: ["React Native", "Expo", "TypeScript", "NativeWind"],
-    href: "https://play.google.com/store/apps/details?id=com.uncoverus",
+    image: "/projects/uncoverus.webp",
+    href: "https://play.google.com/store/apps/details?id=com.anish.anonyfess.uncoverus",
   },
   {
     id: 4,
