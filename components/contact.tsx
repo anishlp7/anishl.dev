@@ -25,7 +25,7 @@ const socials = [
   },
   {
     icon: Mail,
-    href: "mailto:anishlp7@gmail.com",
+    href: "mailto:hi@anishl.dev",
     label: "Email",
   },
 ]
@@ -44,14 +44,14 @@ export function Contact() {
         <div className="section-title-bar mx-auto" />
 
         <motion.a
-          href="mailto:anishlp7@gmail.com"
+          href="mailto:hi@anishl.dev"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mt-6 inline-block text-[1.2rem] font-medium text-muted transition-colors duration-300 hover:text-foreground"
         >
-          anishlp7@gmail.com
+          hi@anishl.dev
         </motion.a>
 
         {/* Social Links */}
