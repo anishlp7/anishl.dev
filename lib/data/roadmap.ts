@@ -18,24 +18,24 @@ export const roadmapPhases: RoadmapPhase[] = [
   {
     id: 2,
     name: "Blocks & Charts",
-    status: "in-progress",
-    label: "In Progress",
+    status: "completed",
+    label: "Completed",
     description:
       "Pre-built screen layouts and data visualization components. Authentication flows, dashboards, settings screens, and chart components out of the box.",
   },
   {
     id: 3,
     name: "Figma UI Kit",
-    status: "planned",
-    label: "Planned",
+    status: "in-progress",
+    label: "In Progress",
     description:
       "A complete Figma design kit that mirrors every AniUI component. Design and develop with the same system — pixel-perfect handoff.",
   },
   {
     id: 4,
     name: "Premium Blocks",
-    status: "planned",
-    label: "Planned",
+    status: "in-progress",
+    label: "In Progress",
     description:
       "Advanced, production-ready screen templates for common app patterns. E-commerce, social, fintech, and more — copy, paste, ship.",
   },
