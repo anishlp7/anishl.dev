@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
-import { Menu, X, Github } from "lucide-react"
+import { Github } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 
 const navLinks = [
@@ -15,11 +16,14 @@ const navLinks = [
 ]
 
 export function Nav() {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
   useEffect(() => {
+    if (!isHome) return
     const onScroll = () => {
       setScrolled(window.scrollY > 50)
 
@@ -37,9 +41,14 @@ export function Nav() {
         }
       }
     }
+    onScroll()
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  }, [isHome])
+
+  // On the home page, hash links smooth-scroll to the section.
+  // On other routes they resolve to the real "/#section" anchor.
+  const linkHref = (href: string) => (isHome ? href : `/${href}`)
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id.replace("#", ""))
@@ -48,6 +57,15 @@ export function Nav() {
       window.scrollTo({ top, behavior: "smooth" })
     }
     setMobileOpen(false)
+  }
+
+  const handleSectionClick = (e: React.MouseEvent, href: string) => {
+    if (isHome) {
+      e.preventDefault()
+      scrollTo(href)
+    } else {
+      setMobileOpen(false)
+    }
   }
 
   return (
@@ -93,10 +111,10 @@ export function Nav() {
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.165, 0.84, 0.44, 1] }}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
+              href={linkHref(link.href)}
+              onClick={(e) => handleSectionClick(e, link.href)}
               className={`relative rounded-lg px-4 py-2 text-[0.9rem] font-semibold transition-all duration-300 hover:bg-foreground/[0.03] hover:text-foreground ${
-                activeSection === link.href.replace("#", "")
+                isHome && activeSection === link.href.replace("#", "")
                   ? "text-foreground"
                   : "text-muted"
               }`}
@@ -104,11 +122,24 @@ export function Nav() {
               {link.name}
               <span
                 className={`absolute bottom-1 left-1/2 h-[2px] -translate-x-1/2 bg-foreground transition-all duration-300 ${
-                  activeSection === link.href.replace("#", "") ? "w-[24px]" : "w-0"
+                  isHome && activeSection === link.href.replace("#", "") ? "w-[24px]" : "w-0"
                 }`}
               />
             </motion.a>
           ))}
+          <motion.a
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 + navLinks.length * 0.1, ease: [0.165, 0.84, 0.44, 1] }}
+            href="/hire"
+            className={`relative ml-1 rounded-lg px-4 py-2 text-[0.9rem] font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
+              pathname === "/hire"
+                ? "bg-accent text-white"
+                : "text-accent hover:bg-accent/10"
+            }`}
+          >
+            Hire Me
+          </motion.a>
           <div className="ml-2 flex items-center gap-1.5 border-l border-border pl-3">
             <a
               href="https://github.com/anishlp7"
@@ -159,10 +190,10 @@ export function Nav() {
         {navLinks.map((link) => (
           <a
             key={link.name}
-            href={link.href}
-            onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
+            href={linkHref(link.href)}
+            onClick={(e) => handleSectionClick(e, link.href)}
             className={`w-full text-center rounded-lg px-5 py-3.5 text-[1.1rem] font-semibold transition-all duration-300 ${
-              activeSection === link.href.replace("#", "")
+              isHome && activeSection === link.href.replace("#", "")
                 ? "text-foreground"
                 : "text-muted hover:text-foreground"
             }`}
@@ -170,6 +201,17 @@ export function Nav() {
             {link.name}
           </a>
         ))}
+        <a
+          href="/hire"
+          onClick={() => setMobileOpen(false)}
+          className={`w-full text-center rounded-lg px-5 py-3.5 text-[1.1rem] font-semibold transition-all duration-300 ${
+            pathname === "/hire"
+              ? "bg-accent text-white"
+              : "text-accent hover:bg-accent/10"
+          }`}
+        >
+          Hire Me
+        </a>
         <div className="mt-6 flex items-center gap-5">
           <a href="https://github.com/anishlp7" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors">
             <Github className="h-5 w-5" />
