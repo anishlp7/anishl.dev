@@ -151,7 +151,7 @@ export function Nav() {
               <Github className="h-[17px] w-[17px]" />
             </a>
             <a
-              href="https://twitter.com/anishl"
+              href="https://twitter.com/anishlp7"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:text-foreground"
@@ -216,7 +216,7 @@ export function Nav() {
           <a href="https://github.com/anishlp7" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors">
             <Github className="h-5 w-5" />
           </a>
-          <a href="https://twitter.com/anishl" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors">
+          <a href="https://twitter.com/anishlp7" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-colors">
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>

@@ -6,7 +6,7 @@
 - Location: India
 - Day job: Senior Frontend developer (web applications) — do NOT mention company names anywhere
 - Side mission: Building AniUI — React Native component library & ecosystem
-- GitHub: github.com/anishl
+- GitHub: github.com/anishlp7
 - Email: aniship7@gmail.com
 
 ## What This Site Is
