@@ -19,10 +19,14 @@ import {
   Star,
   ExternalLink,
   ChevronDown,
+  PhoneCall,
+  ClipboardList,
+  PenTool,
+  Code2,
+  Rocket,
 } from "lucide-react"
 
-// ⚠️ Replace with your real Calendly "Discovery Call" link once created.
-const CALENDLY_URL = "https://calendly.com/anishlp7/discovery-call"
+const CALENDLY_URL = "https://calendly.com/anishlp7/30min"
 const EMAIL = "hi@anishl.dev"
 
 const ease = [0.165, 0.84, 0.44, 1] as const
@@ -94,6 +98,40 @@ const whyPoints = [
   },
 ]
 
+// ── Process data ─────────────────────────────────────────────
+const processSteps = [
+  {
+    icon: PhoneCall,
+    title: "Discovery call",
+    duration: "~30 min",
+    body: "We talk through what you're building, the scope, timeline, and goals. No pressure — I'll tell you honestly if I'm the right fit.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Proposal & plan",
+    duration: "1–2 days",
+    body: "You get a clear proposal: fixed scope, milestones, timeline, and a quote. No surprises once we start.",
+  },
+  {
+    icon: PenTool,
+    title: "Design & setup",
+    duration: "Week 1",
+    body: "I set up the architecture and design foundation, working from your Figma or references. I default to AniUI for mobile and shadcn/ui for web — I built AniUI, so I know it deeply — but I'm comfortable adapting to whatever your project already uses: Gluestack, React Native Reusables, Ant Design, or your existing stack.",
+  },
+  {
+    icon: Code2,
+    title: "Build — in slices",
+    duration: "Ongoing",
+    body: "I ship in working increments with regular check-ins, so you see progress every week and issues get caught early — never a big-bang reveal at the end.",
+  },
+  {
+    icon: Rocket,
+    title: "Launch & handover",
+    duration: "Final week",
+    body: "App Store / Play Store submission or production deploy, clean documented code, and a proper handover. Optional retainer if you want me to keep shipping.",
+  },
+]
+
 // ── Section 4 data ───────────────────────────────────────────
 const stackGroups = [
   {
@@ -119,19 +157,20 @@ const services = [
   {
     name: "Hourly",
     best: "Ongoing work, bug fixes, feature additions",
-    rate: "Starting from $60/hr",
+    rate: "Custom hourly rate",
+    note: "Billed weekly, no minimum commitment",
   },
   {
     name: "Project Based",
     best: "New apps, MVPs, complete features",
-    rate: "Starting from $2,000/project",
-    note: "Timeline discussed per project",
+    rate: "Fixed project quote",
+    note: "Scope and timeline agreed upfront",
     highlight: true,
   },
   {
     name: "Retainer",
     best: "Startups needing a dedicated senior developer",
-    rate: "Starting from $2,500/month",
+    rate: "Monthly retainer",
     note: "Dedicated hours, priority response, ongoing development",
   },
 ]
@@ -174,6 +213,7 @@ export function Hire({ stars }: HireProps) {
       <HireHero />
       <WhatIBuild />
       <WhyMe />
+      <Process />
       <TechStack />
       <Services />
       <FeaturedProjects stars={stars} />
@@ -351,6 +391,67 @@ function WhyMe() {
   )
 }
 
+// ── Process ──────────────────────────────────────────────────
+function Process() {
+  return (
+    <section className="section-container !pt-0">
+      <motion.div {...fadeUp} transition={{ duration: 0.9, ease }}>
+        <h2 className="section-title">How we&apos;ll work together</h2>
+        <p className="section-subtitle">From first call to launch</p>
+        <div className="section-title-bar" />
+      </motion.div>
+
+      <div className="relative mt-14">
+        {/* Vertical connecting line */}
+        <div className="absolute left-[22px] top-2 bottom-2 w-px bg-border sm:left-[26px]" />
+
+        <div className="space-y-8">
+          {processSteps.map((step, i) => (
+            <motion.div
+              key={step.title}
+              {...fadeUp}
+              transition={{ duration: 0.6, delay: i * 0.1, ease }}
+              className="relative flex gap-6"
+            >
+              {/* Number + icon node */}
+              <div className="relative z-10 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-accent/20 bg-card text-accent shadow-[0_4px_15px_var(--color-card-shadow)] sm:h-[52px] sm:w-[52px]">
+                <step.icon className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
+              </div>
+
+              <div className="flex-1 pt-1.5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-[0.8rem] font-bold text-muted-light/60">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-[1.15rem] font-bold tracking-tight">{step.title}</h3>
+                  <span className="rounded-full bg-foreground/[0.05] px-3 py-1 text-[0.72rem] font-semibold text-muted dark:bg-foreground/[0.08]">
+                    {step.duration}
+                  </span>
+                </div>
+                <p className="mt-2.5 max-w-2xl text-[0.95rem] leading-[1.7] text-muted">
+                  {step.body}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }} className="mt-12">
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2 text-[0.95rem] font-semibold text-accent transition-colors hover:text-foreground"
+        >
+          It all starts with a call
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </a>
+      </motion.div>
+    </section>
+  )
+}
+
 // ── 4. Tech Stack ────────────────────────────────────────────
 function TechStack() {
   return (
@@ -419,7 +520,7 @@ function Services() {
             <p className="mt-3 text-[0.9rem] leading-[1.6] text-muted-light">
               <span className="font-semibold text-muted">Best for:</span> {service.best}
             </p>
-            <div className="mt-6 text-[1.15rem] font-bold text-foreground">{service.rate}</div>
+            <div className="mt-6 text-[1.05rem] font-bold text-accent">{service.rate}</div>
             {service.note && (
               <p className="mt-2 text-[0.85rem] leading-[1.6] text-muted-light">{service.note}</p>
             )}
@@ -446,7 +547,7 @@ function Services() {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="mt-8 text-center text-[0.85rem] text-muted-light"
       >
-        All prices in USD. Final quote after a discovery call.
+        Every project is different — you&apos;ll get a clear, tailored quote after a quick discovery call.
       </motion.p>
     </section>
   )

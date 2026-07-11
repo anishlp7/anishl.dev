@@ -13,7 +13,7 @@ const statusStyles: Record<string, string> = {
 }
 
 export function Roadmap() {
-  const [expanded, setExpanded] = useState<number | null>(2)
+  const [expanded, setExpanded] = useState<number | null>(4)
 
   return (
     <section id="roadmap" className="section-container">
