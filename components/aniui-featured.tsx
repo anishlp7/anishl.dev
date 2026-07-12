@@ -68,11 +68,11 @@ export function AniUIFeatured({ stars, downloads }: AniUIFeaturedProps) {
               Current Phase
             </span>
             <span className="rounded-full bg-accent/10 px-3.5 py-1 text-[0.8rem] font-semibold text-accent">
-              Phase 2 — Blocks & Charts
+              Phase 3 & 4 — Figma UI Kit & Premium Blocks
             </span>
           </div>
           <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-foreground/[0.06]">
-            <div className="relative h-full w-2/6 rounded-full bg-accent">
+            <div className="relative h-full w-4/6 rounded-full bg-accent">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent" style={{ animation: "shimmer 2s infinite" }} />
             </div>
           </div>
